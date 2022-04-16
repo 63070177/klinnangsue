@@ -1,0 +1,30 @@
+.k-box {
+    width: 600;
+    margin-top: 50;
+}
+
+.k-check {
+    margin-bottom: 10;
+}
+
+.k-pass {
+    color: #6A7150;
+}
+
+.k-mem {
+    color: #6A7150;
+}
+
+.k-title {
+    color: #6A7150;
+}
+
+.k-bu {
+    background-color: #6A7150;
+    color: white;
+}
+
+.k-small {
+    color: #6A7150;
+    margin-bottom: 10px;
+}
