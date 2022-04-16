@@ -1,4 +1,4 @@
-.sec {
+.k-sec {
     background-color: #6A7150;
     margin-top: 100%;
 }
@@ -7,14 +7,24 @@
     color: #6A7150;
 }
 
-.butt {
+.k-butt {
     background-color: #6A7150;
     color: white;
     margin-top: -300;
     display: none;
 }
 
-.butt2 {
+.k-butt2 {
     background-color: #6A7150;
     color: white;
+}
+
+.k-im-item {
+    margin-top: 20px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+}
+
+.k-im {
+    margin-right: 15px;
 }
