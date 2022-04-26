@@ -1,63 +1,151 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Klinnangsue</title>
+    <script src="https://kit.fontawesome.com/c33c13f08c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="gcss.css">
 </head>
 
-<body class="k-bod">
-    <div class="buttons">
-        <button class="k-butt2 button" id="butt2" onclick="showAndHide()">
-            <div class="k-im k-im-item">
-                <img src="icons8-literature-64.png" alt="" width="25" height="50">
+<body>
+    <div id="app">
+
+        <nav class="navbar is-transparent" style="background-color: #f2e0c3;">
+            <div class="navbar-brand">
+                <div>
+                    <img class="logo" src="klinnangsue_logo.svg"
+                        width="200" height="100">
+                    <div class="logo-text">
+                        <span>Klinnangsue<br>ร้านกลิ่นหนังสือ</span>
+                    </div>
+                </div>
+                <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <p>แสดงสารบัญหนังสือ</p>
-        </button>
-    </div>
-    <div class="k-butt buttons" id="butt" onclick="showAndHide()">
-        <div class="k-item k-items">
-            <ul>
-                <li>กลิ่นหนังสือ</li>
-                <li>หนังสือมาใหม่</li>
-                <li>Blind Date With a Book</li>
-                <li>Best Sellers</li>
-                <li>PRE-ORDER</li>
-                <li>วรรณกรรมไทย</li>
-                <li>วรรณกรรมแปล</li>
-                <li>นวนิยายไทย</li>
-                <li>นวนิยายแปล</li>
-                <li>บทกวี</li>
-                <li>เรื่องสั้น</li>
-                <li>ปรัชญา</li>
-                <li>แฟนตาซี</li>
-                <li>นักเขียนอิสระ</li>
-                <li>หนังสือเด็กๆ</li>
-            </ul>
+
+            <div id="navbarExampleTransparentExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" style="font-size: 2rem; margin-right: 20px;">
+                        Book
+                    </a>
+                    <div class="navbar-item">
+                        <a class="navbar-item" style="font-size: 2rem;">
+                            Blind date with a book
+                        </a>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="field is-grouped">
+                            <form method="GET" action="/">
+                                <div class="columns">
+                                    <div class="column is-4 is-offset-2">
+                                        <input class="input" type="text" name="search" placeholder="ค้นชื่อบทความ"
+                                            value="...">
+                                    </div>
+                                    <div class="column is-2">
+                                        <input class="button" type="submit" value="Search">
+                                    </div>
+                                </div>
+                            </form>
+                            <p class="control">
+                                <a class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </span>
+                                </a>
+                            </p>
+                            <p class="control">
+                                <a class="button is-primary" style="margin-right: 80px;">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <span>Member</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <br>
+        <div class="container">
+            <div class="clicktoblind">
+                <p class="boxtoblind">
+                    Don't JUDGE a book by its COVER
+                    <button class="button gbuttom">
+                        <p>
+                            เลือกดูหนังสือทั้งหมด <i class="fa-solid fa-arrow-right"></i>
+                        </p>
+                    </button>
+                </p>
+            </div>
         </div>
-        <button class="k-butt button">
-            <div class="k-im k-im-item">
-                <img src="icons8-literature-64.png" alt="" width="25" height="50">
+
+
+        <div class="container">
+            <div class="select is-success">
+                <select>
+                    <option>สารบัญหนังสือ</option>
+                    <option>หนังสือมาใหม่</option>
+                    <option>Blind Date With a Book</option>
+                    <option> Best Sellers </option>
+                    <option> PRE-ORDER </option>
+                    <option> วรรณกรรมไทย </option>
+                    <option> วรรณกรรมแปล </option>
+                    <option> นวนิยายไทย </option>
+                    <option> นวนิยายแปล </option>
+                    <option> บทกวี </option>
+                    <option> เรื่องสั้น </option>
+                    <option> ปรัชญา </option>
+                    <option> แฟนตาซี </option>
+                    <option> นักเขียนอิสระ </option>
+                    <option> หนังสือเด็กๆ </option>
+                </select>
             </div>
-            <p>ซ่อนสารบัญหนังสือ</p>
-        </button>
+        </div>
+
+        <!-- v-for information-->
+        <div class="container">
+            <div class="booktype">
+                <span class="icon">
+                    <i class="fa-solid fa-book"></i>
+                    book_type
+                </span>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="content">
+                        content
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <section class="k-sec hero is-medium">
-        <nav class="level">
+
+    <!-- footer -->
+    <footer>
+        <nav class="level k-level">
             <div class="level-item has-text-centered">
                 <div>
-                    <p class="title has-text-white">Klinnangsue</p>
-                    <p class="title has-text-white">ร้านกลิ่นหนังสือ</p>
+                    <p style="letter-spacing: 5;" class="title has-text-white">Klinnangsue</p>
+                    <p style="letter-spacing: 5;" class="title has-text-white">ร้านกลิ่นหนังสือ</p>
                 </div>
             </div>
             <p class="level-item has-text-centered">
                 <a class="link is-info has-text-white">ร้านหนังสือ</a>
-            </p>
-            <p class="level-item has-text-centered">
-                <a class="link is-info has-text-white">ห้องสมุด</a>
             </p>
             <p class="level-item has-text-centered">
                 <a class="link is-info has-text-white">แจ้งการโอนเงิน</a>
@@ -71,10 +159,10 @@
         </nav>
 
         <!-- Right side -->
-        <div class="level-right">
+        <div class="level-right" style="padding-right: 100px;">
             <p class="level-item"><strong class="has-text-white">ติดตามข่าว ร้านกลิ่นหนังสือ</strong></p>
         </div>
-        <div class="level-right">
+        <div class="level-right" style="padding-right: 100px;">
             <div class="level-item">
                 <div class="field has-addons">
                     <p class="control">
@@ -89,41 +177,37 @@
             </div>
         </div>
 
-        <div class="level-right">
+        <div class="level-right" style="padding-right: 100px;">
             <div class="k-im-item">
-                <img src="icons8-facebook-50.png" alt="" width="20" height="20">
+                <i class="fa-brands fa-facebook"></i>
             </div>
             <div class="k-im-item">
-                <img src="icons8-twitter-50.png" alt="" width="20" height="20">
+                <i class="fa-brands fa-twitter"></i>
             </div>
             <div class="k-im-item">
-                <img src="icons8-instagram-50.png" alt="" width="20" height="20">
+                <i class="fa-brands fa-instagram"></i>
             </div>
         </div>
 
-        <div class="level-right">
+        <div class="level-right" style="padding-right: 100px;">
             <p class="level-item"><a class="has-text-white">นโยบายความเป็นส่วนตัว</a></p>
             <p class="level-item"><a class="has-text-white">นโยบายการส่งสินค้า</a></p>
             <p class="level-item"><a class="has-text-white">นโยบายการคืนเงิน</a></p>
         </div>
 
-        <p class="level-left">
+        <p class="level-left" style="padding-left: 50px; padding-bottom: 20px;">
             <a class="link is-info has-text-white">Copyright©2020 Klinnangusue, All Rights Reserved.</a>
         </p>
-    </section>
+    </footer>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- vue script --------------------------------------->
     <script>
-        function showAndHide() {
-            var butt = document.getElementById("butt");
-            var butt2 = document.getElementById("butt2");
-            if (butt2.style.display === "none") {
-                butt2.style.display = "";
-            } else {
-                butt2.style.display = "none";
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello'
             }
-        }
+        })
     </script>
-</body>
-
-</html>
