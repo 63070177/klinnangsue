@@ -103,3 +103,79 @@ footer{
     margin-right: 30px;
     margin-left: 100px;
 }
+
+.linkinP{
+    color: #6d7352;
+}
+
+.linkinP:hover{
+    color: black;
+}
+
+.ubox{
+    width: 300px;
+    margin-top: 50px;
+}
+
+.gbookstore{
+    width: 300px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    background-color: #bf9772;
+    text-align: center;
+    border: none;
+    border-radius: 30px;
+}
+
+.glogo{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 200px;
+}
+
+.glogo-text{
+    letter-spacing: 15;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.gbox{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-color: #6d7352;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.gbookstore2{
+    width: 250px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: #bf9772;
+    text-align: center;
+    border: none;
+    border-radius: 30px;
+}
+
+.gbutton{
+    margin-top: 30px;
+    text-align: center;
+    background-color: none;
+}
+
+.gbutt{
+    border: 2px solid #6d7352;
+    font-size: 1.2rem;
+    background-color: #f2e0c3;
+    color: #6d7352;
+    border-radius: 20px;
+    width: 300px;
+    height: 50px;
+}
