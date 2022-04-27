@@ -1,0 +1,129 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gcss.css">
+    <link rel="icon" type="image/x-icon" href="book_86345.ico">
+</head>
+
+<body style="background-color: #f2e0c3;">
+    <div id="app">
+        <div class="gbox">
+            <div class="glogo-text">
+                <span>Klinnangsue</span>
+                <span>ร้านกลิ่นหนังสือ</span>
+            </div>
+        </div>
+        <div class="k-box box">
+            <div class="k-title title">สมัครสมาชิก</div>
+            <div class="k-fe field">
+                <label class="label">อีเมล <font color="red">*</font></label>
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" type="email" placeholder="อีเมล" v-model="email">
+                    <span style="color: red;">{{error.email}}</span>
+                </p>
+            </div>
+            <div class="k-fe field">
+                <label class="label">ชื่อผู้ใช้ <font color="red">*</font></label>
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" type="username" placeholder="ชื่อผู้ใช้" v-model="userName">
+                    <span style="color: red;">{{error.userName}}</span>
+                </p>
+            </div>
+            <div class="k-fe field">
+                <label class="label">รหัสผ่าน <font color="red">*</font></label>
+                <p class="control has-icons-left">
+                    <input class="input" type="password" placeholder="รหัสผ่าน" v-model="pasw">
+                    <span style="color: red;">{{error.pasw}}</span>
+                </p>
+            </div>
+            <div class="k-fe field">
+                <label class="label">ชื่อจริง <font color="red">*</font></label>
+                <p class="control has-icons-left">
+                    <input class="input" type="first_name" placeholder="ชื่อจริง" v-model="firstName">
+                    <span style="color: red;">{{error.firstName}}</span>
+                </p>
+            </div>
+            <div class="k-fe field">
+                <label class="label">นามสกุล <font color="red">*</font></label>
+                <p class="control has-icons-left">
+                    <input class="input" type="last_name" placeholder="นามสกุล" v-model="lastName">
+                    <span style="color: red;">{{error.lastName}}</span>
+                </p>
+            </div>
+            <div class="k-fe field">
+                <label class="label">เบอร์โทรศัพท์ <font color="red">*</font></label>
+                <p class="control has-icons-left">
+                    <input class="input" type="phone" placeholder="เบอร์โทรศัพท์" v-model="phoneNum">
+                    <span style="color: red;">{{error.phoneNum}}</span>
+                </p>
+            </div>
+            <div class="k-fe field">
+                <p class="control">
+                    <button class="k-bu button" @click="comfirm">
+                        ลงทะเบียน
+                    </button>
+                </p>
+            </div>
+            <div class="level">
+                <div class="level-left">
+                    <a class="k-pass" href="login.html">เข้าสู่ระบบ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!-- vue script --------------------------------------->
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            email: '',
+            userName: '',
+            pasw: '',
+            firstName: '',
+            lastName: '',
+            phoneNum: '',
+            error: {
+                email: '',
+                userName: '',
+                pasw: '',
+                firstName: '',
+                lastName: '',
+                phoneNum: ''
+            },
+        },
+        methods:{
+            comfirm(){
+                if (this.email === ''){
+                    this.error.email = 'กรุณากรอกอีเมล'
+                }
+                if (this.userName === '' || this.userName >= 5){
+                    this.error.userName = 'กรุณากรอกชื่อผู้ใช้งาน'
+                }
+                if (this.pasw === '' || this.pasw.length >= 8){
+                    this.error.pasw = 'กรุณากรอกรหัสผ่าน'
+                }
+                if (this.firstName === ''){
+                    this.error.firstName = 'กรุณากรอกชื่อจริง'
+                }
+                if (this.lastName === ''){
+                    this.error.lastName = 'กรุณากรอกนามสกุล'
+                }
+                if (this.phoneNum === '' || this.phoneNum.length == 10){
+                    this.error.phoneNum = 'กรุณากรอกเบอร์โทรศัพท์'
+                }
+            }
+        }
+        
+    })
+</script>
+
+</html>
