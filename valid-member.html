@@ -1,0 +1,165 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gcss.css">
+    <link rel="icon" type="image/x-icon" href="book_86345.ico">
+</head>
+
+<body style="background-color: #f2e0c3;">
+    <div class="gbox">
+        <div class="glogo-text">
+            <span>Klinnangsue</span>
+            <span>ร้านกลิ่นหนังสือ</span>
+        </div>
+    </div>
+    <div id="app" class="k-box box">
+        <div class="k-title title">สมัครสมาชิก</div>
+        <div class="k-fe field">
+            <label class="label">อีเมล <font color="red">*</font></label>
+            <p class="control has-icons-left has-icons-right">
+                <input class="input" type="email" placeholder="อีเมล" :class="{'is-danger': error.email}" v-model="email" @input="validateEmail()">
+                <span class="has-text-danger">{{error.email}}</span>
+            </p>
+        </div>
+        <div class="k-fe field">
+            <label class="label">รหัสผ่าน <font color="red">*</font></label>
+            <p class="control has-icons-left">
+                <input class="input" type="password" placeholder="รหัสผ่าน" :class="{'is-danger': error.password}" v-model="password" @input="validatePassword()">
+                <span class="has-text-danger">{{error.password}}</span>
+            </p>
+        </div>
+        <div class="k-fe field">
+            <label class="label">ชื่อผู้ใช้งาน <font color="red">*</font></label>
+            <p class="control has-icons-left">
+                <input class="input" type="username" placeholder="ชื่อผู้ใช้งาน" :class="{'is-danger': error.username}" v-model="username" @input="validateUsername()" >
+                <span class="has-text-danger">{{error.username}}</span>
+            </p>
+        </div>
+        <div class="k-fe field">
+            <label class="label">ชื่อจริง <font color="red">*</font></label>
+            <p class="control has-icons-left">
+                <input class="input" type="first_name" placeholder="ชื่อจริง" :class="{'is-danger': error.firstname}" v-model="firstname" @input="validateFirstname()" >
+                <span class="has-text-danger">{{error.firstname}}</span>
+            </p>
+        </div>
+        <div class="k-fe field">
+            <label class="label">นามสกุล <font color="red">*</font></label>
+            <p class="control has-icons-left">
+                <input class="input" type="last_name" placeholder="นามสกุล" :class="{'is-danger': error.lastname}" v-model="lastname" @input="validateLastname()" >
+                <span class="has-text-danger">{{error.lastname}}</span>
+            </p>
+        </div>
+        <div class="k-fe field">
+            <label class="label">เบอร์โทรศัพท์ <font color="red">*</font></label>
+            <p class="control has-icons-left">
+                <input class="input" type="phone" placeholder="เบอร์โทรศัพท์" :class="{'is-danger': error.phone}" v-model="phone" @input="validatePhone()">
+                <span class="has-text-danger">{{error.phone}}</span>
+            </p>
+        </div>
+        <div class="k-fe field">
+            <p class="control">
+                <button class="k-bu button">
+                    ลงทะเบียน
+                </button>
+            </p>
+        </div>
+        <div class="level">
+            <div class="level-left">
+                <a class="k-pass" href="login.html">เข้าสู่ระบบ</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- vue script --------------------------------------->
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                username: '',
+                password: '',
+                phone: '',
+                firstname: '',
+                lastname: '',
+                email: '',
+                error: {
+                    username: '',
+                    password: '',
+                    phone: '',
+                    firstname: '',
+                    lastname: '',
+                    email: ''
+                }
+            },
+            methods: {
+                validateUsername() {
+                    if(this.username === ''){
+                        this.error.username = 'กรุณากรอกชื่อผู้ใช้งาน'
+                        return
+                    }
+                    this.error.username = ''
+                },
+                validatePassword() {
+                    if(this.password === ''){
+                        this.error.password = 'กรุณากรอกรหัสผ่าน'
+                        return
+                    }
+
+                    if(this.password.length < 8){
+                        this.error.password = 'รหัสผ่านห้ามน้อยกว่า 8 ตัวอักษร'
+                        return
+                    }
+
+                    if(!isNaN(this.password)){
+                        this.error.password = 'ห้ามเป็นตัวเลขทั้งหมด'
+                        return
+                    }
+
+                    this.error.password = ''
+                },
+                validatePhone() {
+                    if(isNaN(this.phone) || this.phone.length != 10){
+                        this.error.phone = 'กรุณากรอกเบอร์โทรศัพท์ 10 หลัก'
+                        return
+                    }
+
+                    this.error.phone = ''
+                },
+                validateFirstname() {
+                    if(this.firstname === ''){
+                        this.error.firstname = 'กรุณากรอกชื่อจริง'
+                        return
+                    }
+                    this.error.firstname = ''
+                },
+                validateLastname() {
+                    if(this.lastname === ''){
+                        this.error.lastname = 'กรุณากรอกนามสกุล'
+                        return
+                    }
+                    this.error.lastname = ''
+                },
+                validateEmail() {
+                    if(this.email === ''){
+                        this.error.email = 'กรุณากรอกอีเมล'
+                        return
+                    }
+
+                    if(this.email.search('@') <= 0){
+                        this.error.email = 'กรุณากรอกอีเมล'
+                        return
+                    }
+                    this.error.email = ''
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
