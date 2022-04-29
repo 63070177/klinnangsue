@@ -1,0 +1,263 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gcss.css">
+    <link rel="icon" type="image/x-icon" href="book_86345.ico">
+    <script src="https://kit.fontawesome.com/c33c13f08c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar is-transparent" style="background-color: #f2e0c3;">
+            <div class="navbar-brand">
+                <div>
+                    <img class="logo" src="klinnangsue_logo.svg" width="200" height="100">
+                    <div class="logo-text">
+                        <span>Klinnangsue<br>ร้านกลิ่นหนังสือ</span>
+                    </div>
+                </div>
+                <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div id="navbarExampleTransparentExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" style="font-size: 2rem; margin-right: 20px;">
+                        Book
+                    </a>
+                    <div class="navbar-item">
+                        <a class="navbar-item" style="font-size: 2rem;">
+                            Blind date with a book
+                        </a>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="field is-grouped">
+                            <form method="GET" action="/">
+                                <div class="columns">
+                                    <div class="column is-4 is-offset-2">
+                                        <input class="input" type="text" name="search" placeholder="ค้นชื่อบทความ"
+                                            value="...">
+                                    </div>
+                                    <div class="column is-2">
+                                        <input class="button" type="submit" value="Search">
+                                    </div>
+                                </div>
+                            </form>
+                            <p class="control">
+                                <a class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </span>
+                                </a>
+                            </p>
+                            <p class="control">
+                                <a class="button is-primary" style="margin-right: 80px;">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <span>Member</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <div class="box ubox">
+                        <a class="linkinP" href=""><span> คำสั่งซื้อ </span></a>
+                        <hr>
+                        <a class="linkinP" href="address.html"><span> ที่อยู่ </span></a>
+                        <hr>
+                        <a class="linkinP" href="detailProfile.html"><span> รายละเอียดบัญชี</span></a>
+                        <hr>
+                        <a class="linkinP" href=""><span> ออกจากระบบ </span></a>
+                        <hr>
+                    </div>
+                </div>
+                <div class="column is-9">
+                    <div class="k-boxu box">
+                        <div class="k-title ti1 subtitle">
+                                <p v-if="!cart.length">ยังไม่มีการสั่งซื้อ</p>
+                                <a class="button is-info" style="margin-right: 80px;" href="index.html">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-shop"></i>
+                                    </span>
+                                    <span>เลือกดูสินค้า</span>
+                                </a>
+                        </div>
+                        <div v-for="book in cart" v-if="book.quantity != 0">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-96x96">
+                                            <img :src="book.image" alt="Placeholder image">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content pt-2">
+                                        <p class="is-5">{{book.title}}</p>
+                                        <p class="has-text-grey-light is-6">{{book.brand}}</p>
+                                        <div style="display: flex;justify-content: space-between;">
+                                            <div>
+                                                <!-- ราคาสินค้า------------------------------------------------ -->
+                                                <span class="is-6 has-text-info">{{book.price}}</span>
+                                                <!-- จำนวนสินค้า----------------------------------------------- -->
+                                                <span>จำนวน {{book.quantity}} เล่ม</span>
+                                            </div>
+                                            <div>
+                                                <!-- icon รูปถังขยะ------------------------------------------- -->
+                                                <span class="icon mr-2" key="false" @click="removeFromCart(book)">
+                                                    ยกเลิก
+                                                    <i class="far fa-trash-alt"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                        </div>
+                        <p>ราคารวมทั้งหมด : <b>{{totalPrice}}</b> บาท</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <footer>
+        <nav class="level k-level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p style="letter-spacing: 5;" class="title has-text-white">Klinnangsue</p>
+                    <p style="letter-spacing: 5;" class="title has-text-white">ร้านกลิ่นหนังสือ</p>
+                </div>
+            </div>
+            <p class="level-item has-text-centered">
+                <a class="link is-info has-text-white">ร้านหนังสือ</a>
+            </p>
+            <p class="level-item has-text-centered">
+                <a class="link is-info has-text-white">แจ้งการโอนเงิน</a>
+            </p>
+            <p class="level-item has-text-centered">
+                <a class="link is-info has-text-white">รู้จักเรา</a>
+            </p>
+            <p class="level-item has-text-centered">
+                <a class="link is-info has-text-white">ติดต่อเรา</a>
+            </p>
+        </nav>
+
+        <!-- Right side -->
+        <div class="level-right" style="padding-right: 100px;">
+            <p class="level-item"><strong class="has-text-white">ติดตามข่าว ร้านกลิ่นหนังสือ</strong></p>
+        </div>
+        <div class="level-right" style="padding-right: 100px;">
+            <div class="level-item">
+                <div class="field has-addons">
+                    <p class="control">
+                        <input class="input" type="text" placeholder="EMAIL ADDRESS">
+                    </p>
+                    <p class="control">
+                        <button class="button">
+                            SUBSCRIBE
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="level-right" style="padding-right: 100px;">
+            <div class="k-im-item">
+                <i class="fa-brands fa-facebook"></i>
+            </div>
+            <div class="k-im-item">
+                <i class="fa-brands fa-twitter"></i>
+            </div>
+            <div class="k-im-item">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+        </div>
+
+        <div class="level-right" style="padding-right: 100px;">
+            <p class="level-item"><a class="has-text-white">นโยบายความเป็นส่วนตัว</a></p>
+            <p class="level-item"><a class="has-text-white">นโยบายการส่งสินค้า</a></p>
+            <p class="level-item"><a class="has-text-white">นโยบายการคืนเงิน</a></p>
+        </div>
+
+        <p class="level-left" style="padding-left: 50px; padding-bottom: 20px;">
+            <a class="link is-info has-text-white">Copyright©2020 Klinnangusue, All Rights Reserved.</a>
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- vue script --------------------------------------->
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello',
+                showadd1: false,
+                showadd2: false,
+                cart: [
+                    {
+                        id: 1,
+                        title: "Book 1",
+                        brand: "Adata",
+                        price: 349,
+                        image: 'https://cf.shopee.co.th/file/09e942eb5a057da1a07bb2219f5c866b',
+                        quantity: 1
+                    },
+                    {
+                        id: 2,
+                        title: "Book 2",
+                        brand: "Adata",
+                        price: 259,
+                        image: 'https://cf.shopee.co.th/file/09e942eb5a057da1a07bb2219f5c866b',
+                        quantity: 2
+                    },
+                ],
+                show_modal: false
+            },
+            methods: {
+                removeFromCart(item) {
+                    var r=confirm("คณต้องการยืนยันที่จะลบ/ยกเลิกออเดอร์หรือไม่");
+                    if (r==true)
+                    {
+                        item.quantity--;
+                    if (item.quantity == 0) {
+                        this.cart.splice(this.cart.indexOf(item), 1);
+                    }
+                    }
+                    else
+                    {
+                    alert("ไม่มีการเปลี่ยนแปลง");
+                    }
+                },
+            },
+            computed: {
+                totalPrice() {
+                    return this.cart.reduce((sum, item) => item.price * item.quantity, 0);
+                }
+            }
+        })
+            
+    
+
+
+    </script>
+
+</body>
+
+</html>
