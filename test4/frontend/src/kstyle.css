@@ -1,0 +1,64 @@
+.k-sec {
+    background-color: #6A7150;
+    margin-top: 100%;
+}
+
+
+.k-butt {
+    background-color: #6A7150;
+    color: white;
+    position: relative;
+}
+
+.k-butt2 {
+    background-color: #6A7150;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.k-im-item {
+    margin-top: 20px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    font-size: 30;
+}
+
+.k-im {
+    margin-right: 15px;
+}
+
+.k-box {
+    width: 600px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.k-check {
+    margin-bottom: 10px;
+}
+
+.k-pass {
+    color: #6A7150;
+}
+
+.k-mem {
+    color: #6A7150;
+}
+
+.k-title {
+    color: #6A7150;
+}
+
+.k-bu {
+    background-color: #6A7150;
+    color: white;
+}
+
+.k-small {
+    color: #6A7150;
+    margin-bottom: 10px;
+}
+
+.ti2 {
+    margin-top: 100px;
+}
