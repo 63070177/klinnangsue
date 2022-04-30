@@ -232,10 +232,10 @@
             },
             methods: {
                 removeFromCart(item) {
-                    var r=confirm("คณต้องการยืนยันที่จะลบ/ยกเลิกออเดอร์หรือไม่");
+                    var r=confirm("คณต้องการยืนยันที่จะยกเลิกออเดอร์หรือไม่");
                     if (r==true)
                     {
-                        item.quantity--;
+                        item.quantity = 0;
                     if (item.quantity == 0) {
                         this.cart.splice(this.cart.indexOf(item), 1);
                     }
