@@ -85,13 +85,6 @@
             <div class="">
             <div class="k-title title">เพิ่มข้อมูลหนังสือ</div>
             <div class="k-fe field">
-                <label class="label">รหัสหนังสือ</label>
-                <p class="control has-icons-left has-icons-right">
-                    <input class="input" type="codebook" placeholder="รหัสหนังสือ" :class="{ 'is-danger': error.codebook }" v-model="codebook" @input="validCodeBook()">
-                    <span class="has-text-danger">{{ error.codebook }}</span>
-                </p>
-            </div>
-            <div class="k-fe field">
                 <label class="label">ชื่อหนังสือ</label>
                 <p class="control has-icons-left">
                     <input class="input" type="bookname" placeholder="ชื่อหนังสือ" :class="{ 'is-danger': error.bookname }" v-model="bookname" @input="validBookName()">
@@ -106,20 +99,6 @@
                 </p>
             </div>
             <div class="k-fe field">
-                <label class="label">ชื่อผู้แปล</label>
-                <p class="control has-icons-left">
-                    <input class="input" type="translatename" placeholder="ชื่อผู้แปล" :class="{ 'is-danger': error.translatename }" v-model="translatename" @input="validTranslatename()">
-                    <span class="has-text-danger">{{ error.translatename }}</span>
-                </p>
-            </div>
-            <div class="k-fe field">
-                <label class="label">ชื่อผู้วาด</label>
-                <p class="control has-icons-left">
-                    <input class="input" type="drawname" placeholder="ชื่อผู้วาด" :class="{ 'is-danger': error.drawname }" v-model="drawname" @input="validDrawname()">
-                    <span class="has-text-danger">{{ error.drawname }}</span>
-                </p>
-            </div>
-            <div class="k-fe field">
                 <label class="label">รูปปกหน้า</label>
                 <p class="control has-icons-left">
                     <input class="input" type="frontpic" placeholder="รูปปกหน้า" :class="{ 'is-danger': error.frontpic }" v-model="frontpic" @input="validFrontpic()">
@@ -129,7 +108,7 @@
             <div class="k-fe field">
                 <label class="label">รูปปกหลัง</label>
                 <p class="control has-icons-left">
-                    <input class="input" type="backpic" placeholder="รูปปกหลัง">
+                    <input class="input" type="backpic" placeholder="รูปปกหลัง" v-model="backpic">
                 </p>
             </div>
             <div class="k-fe field">
@@ -183,7 +162,7 @@
             </div>
             <div class="k-fe field">
                 <p class="control">
-                    <button class="k-bu button">
+                    <button class="k-bu button" @click="submitFile()">
                         บันทึกการเปลี่ยนแปลง
                     </button>
                 </p>
@@ -274,16 +253,14 @@
 <script>
 import axios from "axios";
 export default {
-  name: "addDetailBook",
+  name: "addDetailBook1",
   data() {
     return {
       user: [], // add blogs variable
-      codebook: '',
       bookname: '',
       authorname: '',
-      translatename: '',
-      drawname: '',
       frontpic: '',
+      backpic: '',
       typebook: '',
       unit: '',
       price: '',
@@ -292,12 +269,10 @@ export default {
       isbn: '',
       text: '',
       error: {
-        codebook: '',
         bookname: '',
         authorname: '',
-        translatename: '',
-        drawname: '',
         frontpic: '',
+        backpic: '',
         typebook: '',
         unit: '',
         price: '',
@@ -321,7 +296,6 @@ export default {
         this.error.codebook = "กรุณากรอกรหัสหนังสือ";
         return;
       }
-
       if (this.codebook.length > 10 ) {
         this.error.codebook = "รหัสหนังสือต้องน้อยกว่า 10 หลัก";
         return;
@@ -333,7 +307,6 @@ export default {
         this.error.bookname = "กรุณากรอกชื่อหนังสือ";
         return;
       }
-
       this.error.bookname = "";
     },
     validAuthorName() {
@@ -341,7 +314,6 @@ export default {
         this.error.authorname = "กรุณากรอกชื่อผู้แต่ง";
         return;
       }
-
       this.error.authorname = "";
     },
     validTranslatename() {
@@ -349,7 +321,6 @@ export default {
         this.error.translatename = "กรุณากรอกชื่อผู้แปล";
         return;
       }
-
       this.error.translatename = "";
     },
     validDrawname() {
@@ -357,7 +328,6 @@ export default {
         this.error.drawname = "กรุณากรอกชื่อผู้วาด";
         return;
       }
-
       this.error.drawname = "";
     },
     validFrontpic(){
@@ -365,7 +335,6 @@ export default {
         this.error.frontpic = "กรุณาใส่รูปปกหน้า";
         return;
       }
-
       this.error.frontpic = "";
     },
     validTypebook() {
@@ -373,7 +342,6 @@ export default {
         this.error.typebook = "กรุณาใส่ประเภทหนังสือ";
         return;
       }
-
       this.error.typebook = "";
     },
     validUnit() {
@@ -381,12 +349,10 @@ export default {
         this.error.unit = "กรุณาใส่จำนวนหนังสือ";
         return;
       }
-
       if (isNaN(this.unit)) {
         this.error.unit = "จำนวนหนังสือต้องเป็นตัวเลข";
         return;
       }
-
       this.error.unit = "";
     },
     validPrice() {
@@ -394,12 +360,10 @@ export default {
         this.error.price = "กรุณาใส่ราคาหนังสือ";
         return;
       }
-
       if (isNaN(this.price)) {
         this.error.price = "ราคาหนังสือต้องเป็นตัวเลข";
         return;
       }
-
       this.error.price = "";
     },
     validPublisher() {
@@ -407,7 +371,6 @@ export default {
         this.error.publisher = "กรุณาใส่ชื่อสำนักพิมพ์";
         return;
       }
-
       this.error.publisher = "";
     },
     validBarcoder() {
@@ -415,7 +378,6 @@ export default {
         this.error.barcode = "กรุณาบาร์โค้ด";
         return;
       }
-
       this.error.barcode = "";
     },
     validIsbn() {
@@ -423,17 +385,14 @@ export default {
         this.error.isbn = "กรุณากรอกเลข ISBN";
         return;
       }
-
       if (this.isbn.length != 13) {
         this.error.isbn = "กรุณากรอกเลข ISBN 13 หลัก";
         return;
       }
-
       if (isNaN(this.isbn)) {
         this.error.isbn = "ต้องเป็นตัวเลขทั้งหมด";
         return;
       }
-
       this.error.isbn = "";
     },
     validText() {
@@ -441,9 +400,28 @@ export default {
         this.error.text = "กรุณาใส่เนื้อเรื่องย่อ";
         return;
       }
-
       this.error.text = "";
-    }
+    },
+    submitFile() {
+        const data = {
+            bookname: this.bookname,
+            authorname: this.authorname,
+            typebook: this.typebook,
+            unit: this.unit,
+            price: this.price,
+            publisher: this.publisher,
+            barcode: this.barcode,
+            isbn: this.isbn,
+            text: this.text,
+            frontpic: this.frontpic,
+            backpic: this.backpic
+        }
+      axios
+        .post(`http://localhost:3000/book/addBook`, data)
+        .then((response) => {
+          alert(response.data)
+        });
+    },
   }
 };
 </script>
@@ -453,7 +431,6 @@ export default {
   font-size: 2rem;
   color: white;
 }
-
 body {
   background: #f2e0c3;
 }
@@ -461,66 +438,53 @@ body {
   background-color: #6a7150;
   margin-top: 100%;
 }
-
 .k-butt {
   background-color: #6a7150;
   color: white;
   position: relative;
 }
-
 .k-butt2 {
   background-color: #6a7150;
   color: white;
   font-size: 1.2rem;
 }
-
 .k-im-item {
   margin-top: 20px;
   margin-right: 5px;
   margin-bottom: 20px;
   font-size: 30;
 }
-
 .k-im {
   margin-right: 15px;
 }
-
 .k-box {
   width: 600px;
   margin: auto;
   margin-top: 50px;
 }
-
 .k-check {
   margin-bottom: 10px;
 }
-
 .k-pass {
   color: #6a7150;
 }
-
 .k-mem {
   color: #6a7150;
 }
-
 .k-title {
   color: #6a7150;
 }
-
 .k-bu {
   background-color: #6a7150;
   color: white;
 }
-
 .k-small {
   color: #6a7150;
   margin-bottom: 10px;
 }
-
 .ti2 {
   margin-top: 100px;
 }
-
 .clicktoblind {
   margin-left: auto;
   margin-right: auto;
@@ -529,7 +493,6 @@ body {
   background-image: url("../founder.jpg");
   background-size: cover;
 }
-
 .boxtoblind {
   padding: 15px;
   position: absolute;
@@ -543,65 +506,54 @@ body {
   font-weight: bold;
   font-size: 2rem;
 }
-
 .gbuttom {
   margin-top: 30px;
   color: white;
   background-color: #6d7352;
   width: 100%;
 }
-
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 20%;
 }
-
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-
 .container {
   padding: 2px 16px;
 }
-
 .booktype {
   padding: 30px;
   font-size: 2rem;
   margin-left: 60px;
 }
-
 .index {
   display: block;
   border: none;
   background-color: transparent;
   font-size: 1.2rem;
 }
-
 .logo {
   width: 150px;
   padding-left: 60px;
   padding-top: 20px;
   margin-right: 30px;
 }
-
 .logo-text {
   position: relative;
   padding-left: 40px;
   text-align: center;
   letter-spacing: 3;
 }
-
 .k-level {
   padding-top: 50px;
   margin-top: 50px;
   padding-right: 100px;
 }
-
 .k-im-item {
   font-size: 2rem;
 }
-
 .logo-text2 {
   letter-spacing: 15;
   margin-top: 40px;
@@ -609,7 +561,6 @@ body {
   font-size: 2.5rem;
   color: #6d7352;
 }
-
 .logo2 {
   width: 150px;
   padding-left: 60px;
@@ -617,20 +568,16 @@ body {
   margin-right: 30px;
   margin-left: 100px;
 }
-
 .linkinP {
   color: #6d7352;
 }
-
 .linkinP:hover {
   color: black;
 }
-
 .ubox {
   width: 300px;
   margin-top: 50px;
 }
-
 .gbookstore {
   width: 300px;
   height: 50px;
@@ -642,20 +589,17 @@ body {
   border: none;
   border-radius: 30px;
 }
-
 .glogo {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
   width: 200px;
 }
-
 .glogo-text {
   letter-spacing: 15;
   font-size: 2.5rem;
   color: white;
 }
-
 .gbox {
   margin-left: auto;
   margin-right: auto;
@@ -665,7 +609,6 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
 .gbookstore2 {
   width: 250px;
   height: 80px;
@@ -677,13 +620,11 @@ body {
   border: none;
   border-radius: 30px;
 }
-
 .gbutton {
   margin-top: 30px;
   text-align: center;
   background-color: none;
 }
-
 .gbutt {
   border: 2px solid #6d7352;
   font-size: 1.2rem;
